@@ -1,0 +1,57 @@
+HARIHARAN J — PORTFOLIO SETUP
+
+1. Download the ZIP file.
+2. In Windows File Explorer, right-click the ZIP and select Extract All.
+3. Select a destination and click Extract.
+4. Open the extracted hariharan-portfolio folder. Do not work inside the ZIP.
+5. Double-click index.html to preview the portfolio in your browser.
+6. In VS Code, select File > Open Folder and choose hariharan-portfolio.
+7. Copy your resume PDF into the resume folder and name it Hariharan_Resume.pdf.
+   The PDF was not included because retrieval was unavailable.
+8. Open index.html to edit your portfolio text.
+9. Open style.css to edit colors, spacing, fonts, and layout.
+10. Press Ctrl+S after editing. Refresh the browser with Ctrl+R.
+
+FILES
+
+index.html                 Main portfolio page
+style.css                  Styles shared by all pages
+resume/Hariharan_Resume.pdf Add your resume PDF here (not included)
+samples/*.html             Three formatted writing samples
+samples/*.md               Three downloadable Markdown source files
+
+The three samples are cloud deployment, AI prerequisites, and user roles
+and application permissions. The AI prerequisites sample is a short
+introductory excerpt, not a complete configuration guide.
+
+EDITING SAMPLES
+
+To change the text readers see, edit the appropriate HTML file in samples.
+To change the downloadable Markdown copy, edit the matching .md file too.
+The HTML and Markdown files do not synchronize automatically.
+
+To preview Markdown in VS Code, press Ctrl+Shift+V.
+To print a sample or save a browser-generated PDF, open its HTML page in
+your browser and press Ctrl+P. Choose Save as PDF if available.
+
+REPLACING THE RESUME
+
+Copy your replacement PDF to the resume folder and name it
+Hariharan_Resume.pdf. The existing links will continue to work.
+
+PUBLISHING
+
+This package is a local preview and has not been published online.
+No installation, paid subscription, external font, or JavaScript is required.
+Keep index.html, style.css, samples, and resume together when moving the site.
+Do not upload the original company documents alongside the samples.
+
+The writing samples are adapted from supplied product documentation.
+Generalization does not establish publication permission. Confirm approval
+for company-derived material before putting the samples on a public site.
+They are labeled illustrative and are not validated deployment instructions.
+
+Employer names remain in the career history and resume. Product and employer
+identifiers have been removed from the generalized writing samples only.
+The site contains your email address. Review the final package
+before publishing it.
