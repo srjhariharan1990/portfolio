@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Cloud Application Deployment | Hariharan J
+        </title>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <a class="skip-link" href="#sample">
+            Skip to sample
+        </a>
+        <header class="site-header">
+            <nav class="container navigation" aria-label="Sample navigation">
+                <a class="brand" href="../index.html">
+                    Hariharan J
+                    <span>
+                        Technical documentation
+                    </span>
+                </a>
+                <a href="../index.html#work-samples">
+                    All writing samples
+                </a>
+            </nav>
+        </header>
+        <main class="container">
+            <div class="sample-top">
+                <div class="sample-toolbar">
+                    <p class="eyebrow">
+                        Writing sample / Adapted deployment procedure
+                    </p>
+                    <a class="button secondary" href="Cloud_Deployment_Writing_Sample.md" download>
+                        Download Markdown
+                    </a>
+                </div>
+                <p class="sample-scope">
+                    Generalized portfolio sample · Illustrative product behavior
+                </p>
+            </div>
+            <article id="sample" class="document">
+                <h1>
+                    Deploy an Analytics Application on a Cloud Platform
+                </h1>
+                <p>
+                    <strong>
+                        Technical writing portfolio sample
+                    </strong>
+                    <br>
+                    <strong>
+                        Audience:
+                    </strong>
+                    System administrators and database administrators
+                    <br>
+                    <strong>
+                        Sample type:
+                    </strong>
+                    Adapted and generalized deployment procedure
+                </p>
+                <blockquote>
+                    <p>
+                        <strong>
+                            About this sample:
+                        </strong>
+                        This example has been adapted from a product deployment procedure. Product and organization names, internal links, release details, and environment-specific identifiers have been removed. The application, interface labels, and workflow below are illustrative; this is not a validated deployment guide for a real platform. Publication permission must be confirmed before this adapted material is shared externally.
+                    </p>
+                </blockquote>
+                <h2>
+                    Overview
+                </h2>
+                <p>
+                    Use a deployment stack to provision the resources required by an analytics application. A stack groups the infrastructure configuration used to create and manage an application environment.
+                </p>
+                <p>
+                    This sample illustrates a new deployment with compute resources, a metadata database, identity integration, networking, and an optional load balancer. Upgrade and access-policy automation workflows are outside its scope.
+                </p>
+                <h2>
+                    Before you begin
+                </h2>
+                <p>
+                    Confirm that the deployment team has completed the following preparation.
+                </p>
+                <div class="table-scroll" role="region" aria-label="Reference table" tabindex="0">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Area
+                                </th>
+                                <th>
+                                    Preparation
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Access
+                                </td>
+                                <td>
+                                    Identify the administrators responsible for cloud resources, application administration, database administration, and identity configuration. Confirm the required permissions.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Resource placement
+                                </td>
+                                <td>
+                                    Identify the target project, deployment region, and available compute capacity.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Network
+                                </td>
+                                <td>
+                                    Prepare the virtual network, application subnet, database connectivity, and approved administrative access method.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Identity
+                                </td>
+                                <td>
+                                    Register the application with the identity provider and identify the application administrator account.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Secrets
+                                </td>
+                                <td>
+                                    Store the required passwords and application client secret in the approved secrets service. Confirm that the deployment can access them.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Compute and storage
+                                </td>
+                                <td>
+                                    Select capacity appropriate for the workload using the applicable product sizing guidance.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Administrative access
+                                </td>
+                                <td>
+                                    Prepare an SSH public key if the deployment requires one. Keep the private key separate.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Database
+                                </td>
+                                <td>
+                                    Decide whether to provision a metadata database or connect to an existing compatible database.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Monitoring
+                                </td>
+                                <td>
+                                    Identify the monitoring configuration and notification destination, if required.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    <strong>
+                        Important:
+                    </strong>
+                    This sample intentionally omits real credentials, resource identifiers, network addresses, sizing limits, and production endpoints.
+                </p>
+                <h2>
+                    1. Start a deployment stack
+                </h2>
+                <ol>
+                    <li>
+                        Sign in to the cloud management console with an account authorized to create deployment resources.
+                    </li>
+                    <li>
+                        Open the application catalog and select the approved analytics application package.
+                    </li>
+                    <li>
+                        Select the deployment package version approved for the environment.
+                    </li>
+                    <li>
+                        Choose the target project or resource container.
+                    </li>
+                    <li>
+                        Review the applicable deployment terms and select
+                        <strong>
+                            Create Stack
+                        </strong>
+                        .
+                    </li>
+                    <li>
+                        Enter a stack name and a description that explain the purpose of the environment.
+                    </li>
+                    <li>
+                        Select
+                        <strong>
+                            Next
+                        </strong>
+                        to configure the deployment.
+                    </li>
+                </ol>
+                <p>
+                    <strong>
+                        Expected result:
+                    </strong>
+                    The console displays the deployment configuration form.
+                </p>
+                <h2>
+                    2. Configure the application instance
+                </h2>
+                <ol>
+                    <li>
+                        Select
+                        <strong>
+                            New Deployment
+                        </strong>
+                        as the deployment workflow.
+                    </li>
+                    <li>
+                        Confirm the target region and resource container.
+                    </li>
+                    <li>
+                        Enter a resource label, such as
+                        <code>
+                            analytics-demo
+                        </code>
+                        , if the form supports one.
+                    </li>
+                    <li>
+                        Select the compute profile and storage capacity specified in the deployment plan.
+                    </li>
+                    <li>
+                        Provide the SSH public key if required for administrative access.
+                    </li>
+                    <li>
+                        Enter the application administrator username.
+                    </li>
+                    <li>
+                        Set the instance time zone if the default does not meet the deployment requirements.
+                    </li>
+                </ol>
+                <p>
+                    <strong>
+                        Note:
+                    </strong>
+                    Account mappings and capacity requirements depend on the actual product. Confirm them before deploying a real system.
+                </p>
+                <h2>
+                    3. Select catalog storage
+                </h2>
+                <ol>
+                    <li>
+                        Review the storage options supported by the application.
+                    </li>
+                    <li>
+                        Select local storage or an object storage location, as appropriate for the deployment.
+                    </li>
+                    <li>
+                        Confirm which application artifacts will use the selected storage option.
+                    </li>
+                    <li>
+                        Confirm whether the storage choice can be changed after deployment.
+                    </li>
+                </ol>
+                <p>
+                    <strong>
+                        Important:
+                    </strong>
+                    Do not assume that selecting object storage moves every application file off the compute instance. Verify the supported artifact types and storage behavior in the applicable product documentation.
+                </p>
+                <p>
+                    Use the supported application interface or API to manage application-owned catalog content.
+                </p>
+                <h2>
+                    4. Configure identity and secrets
+                </h2>
+                <ol>
+                    <li>
+                        Select the approved identity provider.
+                    </li>
+                    <li>
+                        Enter the registered application identifier and identity endpoint required by the deployment form.
+                    </li>
+                    <li>
+                        Select or enter the identity account that will administer the application.
+                    </li>
+                    <li>
+                        Verify that the account exists and that the required role mapping has been configured.
+                    </li>
+                    <li>
+                        Select references to the secrets containing the following values:
+                        <ul>
+                            <li>
+                                Application administrator password.
+                            </li>
+                            <li>
+                                Database administrator password, if required.
+                            </li>
+                            <li>
+                                Identity application client secret.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        If the secrets are stored in a different resource container, select that location and confirm the required access permissions.
+                    </li>
+                </ol>
+                <p>
+                    <strong>
+                        Security note:
+                    </strong>
+                    Select secret references where supported. Do not include passwords, private keys, or client secrets in documentation, screenshots, or shared deployment notes.
+                </p>
+                <h2>
+                    5. Configure network connectivity
+                </h2>
+                <ol>
+                    <li>
+                        Choose whether to use an existing virtual network or create a new one.
+                    </li>
+                    <li>
+                        Select the application subnet and the resource container that owns it.
+                    </li>
+                    <li>
+                        If creating a network, enter the address ranges approved in the network plan.
+                    </li>
+                    <li>
+                        Confirm the required connectivity between the application subnet, metadata database, and identity service.
+                    </li>
+                    <li>
+                        Configure public or private access according to the approved architecture.
+                    </li>
+                    <li>
+                        For a private application instance, confirm the administrative access method, such as a managed bastion connection.
+                    </li>
+                </ol>
+                <p>
+                    <strong>
+                        Expected result:
+                    </strong>
+                    The selected network configuration supports the required application connections and administrative access.
+                </p>
+                <h2>
+                    6. Configure the metadata database
+                </h2>
+                <p>
+                    Coordinate this step with the database administrator.
+                </p>
+                <ol>
+                    <li>
+                        Choose whether to create a new metadata database or use an existing compatible database.
+                    </li>
+                    <li>
+                        For a new database, select the supported database configuration and applicable licensing option.
+                    </li>
+                    <li>
+                        For an existing database, select the database resource and provide the connection details required by the deployment form.
+                    </li>
+                    <li>
+                        Confirm that the application instance can reach the database endpoint through the approved network path.
+                    </li>
+                    <li>
+                        Review database access restrictions and the credentials or secret references used during setup.
+                    </li>
+                </ol>
+                <p>
+                    <strong>
+                        Note:
+                    </strong>
+                    Database compatibility, schema requirements, and supported endpoint options are product-specific and are not defined by this sample.
+                </p>
+                <h2>
+                    7. Configure optional services
+                </h2>
+                <h3>
+                    Load balancing
+                </h3>
+                <p>
+                    If the deployment requires a load balancer:
+                </p>
+                <ol>
+                    <li>
+                        Enable the load balancer option.
+                    </li>
+                    <li>
+                        Select public or private visibility according to the access requirements.
+                    </li>
+                    <li>
+                        Choose the required capacity and listener configuration, where available.
+                    </li>
+                    <li>
+                        Configure the approved certificate for encrypted connections.
+                    </li>
+                </ol>
+                <p>
+                    <strong>
+                        Important:
+                    </strong>
+                    A demonstration certificate is not a substitute for the certificate required by the production deployment plan.
+                </p>
+                <h3>
+                    Monitoring and notifications
+                </h3>
+                <ol>
+                    <li>
+                        Enable metrics collection if required.
+                    </li>
+                    <li>
+                        Select the approved notification destination.
+                    </li>
+                    <li>
+                        Confirm that the deployment has permission to publish metrics and notifications.
+                    </li>
+                </ol>
+                <h2>
+                    8. Review and provision resources
+                </h2>
+                <ol>
+                    <li>
+                        Select
+                        <strong>
+                            Next
+                        </strong>
+                        to open the configuration summary.
+                    </li>
+                    <li>
+                        Review resource placement, compute capacity, storage, network access, database settings, identity configuration, and secret references.
+                    </li>
+                    <li>
+                        Correct any configuration errors before proceeding.
+                    </li>
+                    <li>
+                        Select
+                        <strong>
+                            Create
+                        </strong>
+                        to save the stack.
+                    </li>
+                    <li>
+                        Run the provisioning job, either during stack creation or as a separate action, according to the platform workflow.
+                    </li>
+                    <li>
+                        Monitor the job status and review any reported errors.
+                    </li>
+                </ol>
+                <p>
+                    <strong>
+                        Important:
+                    </strong>
+                    A successful infrastructure job does not by itself confirm that the application is ready. Complete the application checks below.
+                </p>
+                <h2>
+                    9. Verify the deployment
+                </h2>
+                <div class="table-scroll" role="region" aria-label="Reference table" tabindex="0">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Check
+                                </th>
+                                <th>
+                                    Expected result
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Provisioning job
+                                </td>
+                                <td>
+                                    The job completes without unresolved errors.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Resources
+                                </td>
+                                <td>
+                                    The expected compute, storage, network, and database resources are present.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Application startup
+                                </td>
+                                <td>
+                                    Application health information or startup logs indicate successful initialization.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Connectivity
+                                </td>
+                                <td>
+                                    The application can reach its metadata database and identity service.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Sign-in
+                                </td>
+                                <td>
+                                    The designated administrator can sign in through the approved application endpoint.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Access controls
+                                </td>
+                                <td>
+                                    Administrative and user access match the intended role assignments.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Monitoring
+                                </td>
+                                <td>
+                                    Metrics and notifications are available when enabled.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    If a check fails, review the relevant logs and configuration before treating the deployment as complete.
+                </p>
+                <h2>
+                    10. Complete post-deployment tasks
+                </h2>
+                <ol>
+                    <li>
+                        Complete any remaining identity integration and role-mapping tasks.
+                    </li>
+                    <li>
+                        Assign users the required application roles.
+                    </li>
+                    <li>
+                        Review network access, certificates, and administrative access settings.
+                    </li>
+                    <li>
+                        Confirm backup, maintenance, and monitoring responsibilities.
+                    </li>
+                    <li>
+                        Record the approved application endpoint and deployment details in the designated operational record.
+                    </li>
+                    <li>
+                        Remove temporary access or setup resources according to the deployment plan.
+                    </li>
+                </ol>
+                <h2>
+                    Review deployment output
+                </h2>
+                <p>
+                    Use the stack details and job history to review resource information, configuration values, and deployment logs. Review identity registration details in the identity administration interface when necessary.
+                </p>
+                <p>
+                    Keep operational records within the approved environment. Before sharing diagnostic output, remove credentials, tokens, internal addresses, and other restricted information.
+                </p>
+                <h2>
+                    Troubleshooting checklist
+                </h2>
+                <div class="table-scroll" role="region" aria-label="Reference table" tabindex="0">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Symptom
+                                </th>
+                                <th>
+                                    Initial checks
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Provisioning fails
+                                </td>
+                                <td>
+                                    Review the failed job step, resource permissions, available capacity, and required configuration values.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Application does not start
+                                </td>
+                                <td>
+                                    Check startup logs, database connectivity, and access to required secrets.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Administrator cannot sign in
+                                </td>
+                                <td>
+                                    Check the identity registration, account status, and role mapping.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Application endpoint is unreachable
+                                </td>
+                                <td>
+                                    Check the approved access path, subnet rules, and load balancer configuration if used.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Metrics are unavailable
+                                </td>
+                                <td>
+                                    Check whether monitoring is enabled and whether the resource can publish metrics.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    These are illustrative starting points. Follow the troubleshooting guidance for the actual product when diagnosing a real deployment.
+                </p>
+            </article>
+        </main>
+        <footer class="container footer">
+            <p>
+                Hariharan J · Writing samples
+            </p>
+            <a href="../index.html#work-samples">
+                Back to portfolio
+            </a>
+        </footer>
+    </body>
+</html>
