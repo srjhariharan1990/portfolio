@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            User Roles and Application Permissions | Hariharan J
+        </title>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <a class="skip-link" href="#sample">
+            Skip to sample
+        </a>
+        <header class="site-header">
+            <nav class="container navigation" aria-label="Sample navigation">
+                <a class="brand" href="../index.html">
+                    Hariharan J
+                    <span>
+                        Technical documentation
+                    </span>
+                </a>
+                <a href="../index.html#work-samples">
+                    All writing samples
+                </a>
+            </nav>
+        </header>
+        <main class="container">
+            <div class="sample-top">
+                <div class="sample-toolbar">
+                    <p class="eyebrow">
+                        Writing sample / Adapted access reference
+                    </p>
+                    <a class="button secondary" href="User_Roles_and_Application_Permissions_Sample.md" download>
+                        Download Markdown
+                    </a>
+                </div>
+                <p class="sample-scope">
+                    Generalized portfolio sample · Illustrative product behavior
+                </p>
+            </div>
+            <article id="sample" class="document">
+                <h1>
+                    User Roles and Application Permissions
+                </h1>
+                <p>
+                    <strong>
+                        Audience:
+                    </strong>
+                    System administrators, database administrators, and application users
+                    <br>
+                    <strong>
+                        Sample type:
+                    </strong>
+                    Adapted and generalized technical writing sample
+                </p>
+                <blockquote>
+                    <p>
+                        This sample describes an illustrative analytics application. Product names, branded interface labels, proprietary script names, and internal documentation links have been removed or generalized. The permissions described here are adapted from a specific product and do not represent a universal access model.
+                    </p>
+                </blockquote>
+                <h2>
+                    User role
+                </h2>
+                <p>
+                    If your role is
+                    <strong>
+                        User
+                    </strong>
+                    and you have no application permissions, you can access designated shared, personal, and sample folders in the file catalog. You can also download desktop tools from the administration console and access learning resources.
+                </p>
+                <p>
+                    To work with an application, you must receive additional access from an authorized administrator. An application contains one or more analytical databases, referred to as
+                    <strong>
+                        cubes
+                    </strong>
+                    in this sample. You can see only the applications and cubes for which you have permission.
+                </p>
+                <p>
+                    Permissions are assigned separately for each application. For example, you can have
+                    <strong>
+                        Database Access
+                    </strong>
+                    permission for one application and
+                    <strong>
+                        Database Manager
+                    </strong>
+                    permission for another.
+                </p>
+                <h2>
+                    Application permission hierarchy
+                </h2>
+                <p>
+                    Application permissions range from least privileged to most privileged as follows.
+                </p>
+                <div class="table-scroll" role="region" aria-label="Reference table" tabindex="0">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Permission
+                                </th>
+                                <th>
+                                    Primary capability
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    None
+                                </td>
+                                <td>
+                                    No application access has been granted.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Database Access
+                                </td>
+                                <td>
+                                    View cube data and metadata, subject to access filters.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Database Update
+                                </td>
+                                <td>
+                                    Perform permitted data updates and run supported data operations.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Database Manager
+                                </td>
+                                <td>
+                                    Manage cubes, database objects, and cube-level settings.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Application Manager
+                                </td>
+                                <td>
+                                    Manage the application and its cubes, including application permissions and settings.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    Each level above Database Access includes the capabilities of the preceding level. Filters, calculation-script permissions, ownership, cube type, and enabled features can impose additional conditions.
+                </p>
+                <h2>
+                    Database Access permission
+                </h2>
+                <p>
+                    With
+                    <strong>
+                        Database Access
+                    </strong>
+                    permission, you can view data and metadata in the cubes within an application.
+                </p>
+                <h3>
+                    Data access and restrictions
+                </h3>
+                <ul>
+                    <li>
+                        Filters can restrict the data and metadata you can view.
+                    </li>
+                    <li>
+                        A filter can grant write access to specific cube regions, even when your application permission is Database Access.
+                    </li>
+                    <li>
+                        You can use available drill-through reports to access external source data when filters permit access to the relevant cube cells.
+                    </li>
+                </ul>
+                <p>
+                    <strong>
+                        Important:
+                    </strong>
+                    Database Access is not necessarily read-only. The effective access also depends on assigned filters.
+                </p>
+                <h3>
+                    Available operations
+                </h3>
+                <p>
+                    You can:
+                </p>
+                <ul>
+                    <li>
+                        View the cube outline.
+                    </li>
+                    <li>
+                        Download files and artifacts from application and cube directories.
+                    </li>
+                    <li>
+                        Build aggregations for aggregate storage cubes.
+                    </li>
+                    <li>
+                        Run multidimensional query scripts.
+                    </li>
+                    <li>
+                        View database size and monitor your own sessions in the administration console.
+                    </li>
+                </ul>
+                <h3>
+                    Scenario participation
+                </h3>
+                <p>
+                    If you are a scenario participant, you can view base data and scenario changes. If you are a scenario approver, you can approve or reject a scenario.
+                </p>
+                <h2>
+                    Database Update permission
+                </h2>
+                <p>
+                    With
+                    <strong>
+                        Database Update
+                    </strong>
+                    permission, you can perform all operations available with Database Access permission. You can also:
+                </p>
+                <ul>
+                    <li>
+                        Load, update, and clear cube data.
+                    </li>
+                    <li>
+                        Export cube data in tabular format.
+                    </li>
+                    <li>
+                        Run calculation scripts for which you have execution permission.
+                    </li>
+                    <li>
+                        Create, manage, and delete your own scenarios in block storage cubes with scenario management enabled.
+                    </li>
+                </ul>
+                <p>
+                    <strong>
+                        Note:
+                    </strong>
+                    Database Update permission does not automatically grant permission to execute every calculation script.
+                </p>
+                <h2>
+                    Database Manager permission
+                </h2>
+                <p>
+                    With
+                    <strong>
+                        Database Manager
+                    </strong>
+                    permission, you can perform all operations available with Database Update permission and manage the cubes within the application.
+                </p>
+                <h3>
+                    Cube structure and lifecycle
+                </h3>
+                <p>
+                    You can:
+                </p>
+                <ul>
+                    <li>
+                        Upload files to cube directories.
+                    </li>
+                    <li>
+                        Edit cube outlines and build dimensions.
+                    </li>
+                    <li>
+                        Manage dimension generation and level names.
+                    </li>
+                    <li>
+                        Export data and export cubes to application workbooks.
+                    </li>
+                    <li>
+                        Start and stop cubes from the web interface.
+                    </li>
+                    <li>
+                        Enable scenarios and change the number of scenarios allowed.
+                    </li>
+                </ul>
+                <h3>
+                    Files and scripts
+                </h3>
+                <p>
+                    You can access and manage database files, including creating and editing:
+                </p>
+                <ul>
+                    <li>
+                        Calculation scripts.
+                    </li>
+                    <li>
+                        Drill-through reports.
+                    </li>
+                    <li>
+                        Administrative command scripts.
+                    </li>
+                    <li>
+                        Multidimensional query scripts.
+                    </li>
+                    <li>
+                        Report scripts.
+                    </li>
+                    <li>
+                        Rules files for dimension building and data loading.
+                    </li>
+                </ul>
+                <p>
+                    You can also assign users permission to execute calculation scripts.
+                </p>
+                <h3>
+                    Data access filters
+                </h3>
+                <p>
+                    You can create and assign filters that grant or restrict data access for specific users and groups.
+                </p>
+                <p>
+                    <strong>
+                        Important:
+                    </strong>
+                    You can assign cube filters only to users and groups already provisioned for the application. An Application Manager or a higher-level administrator must grant the underlying application access.
+                </p>
+                <h3>
+                    Settings and monitoring
+                </h3>
+                <p>
+                    You can:
+                </p>
+                <ul>
+                    <li>
+                        Manage cube-level substitution variables.
+                    </li>
+                    <li>
+                        View locked cube objects and data blocks.
+                    </li>
+                    <li>
+                        View and change database settings.
+                    </li>
+                    <li>
+                        View database statistics.
+                    </li>
+                    <li>
+                        View and export audit records through the web interface.
+                    </li>
+                </ul>
+                <p>
+                    To access these tasks, select the database in the application interface and open the relevant management area. Navigation labels depend on the implementation.
+                </p>
+                <h2>
+                    Application Manager permission
+                </h2>
+                <p>
+                    With
+                    <strong>
+                        Application Manager
+                    </strong>
+                    permission, you can perform all operations available with Database Manager permission for every cube in the application. You can also manage application-wide access, configuration, and resources.
+                </p>
+                <h3>
+                    Application and cube lifecycle
+                </h3>
+                <p>
+                    You can:
+                </p>
+                <ul>
+                    <li>
+                        Copy cubes within the application.
+                    </li>
+                    <li>
+                        Start and stop the application.
+                    </li>
+                    <li>
+                        View and terminate user sessions in the administration console.
+                    </li>
+                    <li>
+                        Run administrative command scripts.
+                    </li>
+                    <li>
+                        Export cube artifacts to a backup archive using the lifecycle export operation.
+                    </li>
+                    <li>
+                        Purge cube audit records.
+                    </li>
+                </ul>
+                <h3>
+                    Ownership requirements
+                </h3>
+                <p>
+                    Application Manager permission alone does not authorize every copy or delete operation:
+                </p>
+                <ul>
+                    <li>
+                        You can copy or delete an application only if you are its owner—the privileged creator account in this illustrative model.
+                    </li>
+                    <li>
+                        You can delete a cube only if you are its owner—the privileged creator account in this illustrative model.
+                    </li>
+                </ul>
+                <h3>
+                    Application administration
+                </h3>
+                <p>
+                    You can:
+                </p>
+                <ul>
+                    <li>
+                        Access and manage application files.
+                    </li>
+                    <li>
+                        Manage application-level connections and data sources for external data access.
+                    </li>
+                    <li>
+                        Change application configuration and general settings.
+                    </li>
+                    <li>
+                        Provision and manage user and group permissions for the application and its cubes.
+                    </li>
+                    <li>
+                        Add and remove application-level substitution variables.
+                    </li>
+                    <li>
+                        View application statistics.
+                    </li>
+                    <li>
+                        Download application logs.
+                    </li>
+                </ul>
+                <p>
+                    To access these tasks, select the application and open the appropriate settings or administration area. Related tasks may be grouped together in the interface.
+                </p>
+                <h2>
+                    Access examples
+                </h2>
+                <div class="table-scroll" role="region" aria-label="Reference table" tabindex="0">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Situation
+                                </th>
+                                <th>
+                                    Access consideration
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    A user needs to view cube data.
+                                </td>
+                                <td>
+                                    Database Access may be sufficient, subject to filters.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    A user needs to load data.
+                                </td>
+                                <td>
+                                    Database Update or a higher permission is required.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    A user needs to run a calculation script.
+                                </td>
+                                <td>
+                                    Database Update or higher is required, together with permission to execute the script.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    A manager needs to assign a data filter to a new user.
+                                </td>
+                                <td>
+                                    The user must first be provisioned for the application by an Application Manager or higher.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    An administrator needs to manage application-wide user permissions.
+                                </td>
+                                <td>
+                                    Application Manager or a higher administrative role is required.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    An Application Manager needs to delete a cube.
+                                </td>
+                                <td>
+                                    The ownership requirement must also be satisfied.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    <em>
+                        This adapted sample demonstrates permission documentation and conditional access explanations. Confirm permission to publish company-derived material before sharing it externally.
+                    </em>
+                </p>
+            </article>
+        </main>
+        <footer class="container footer">
+            <p>
+                Hariharan J · Writing samples
+            </p>
+            <a href="../index.html#work-samples">
+                Back to portfolio
+            </a>
+        </footer>
+    </body>
+</html>
